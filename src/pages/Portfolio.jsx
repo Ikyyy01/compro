@@ -32,20 +32,60 @@ const css = `
 .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
 .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:var(--accent);color:#0a0a08;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:var(--radius);transition:background .2s}
 .btn-primary:hover{background:var(--accent2)}
+.wip-badge{display:inline-flex;align-items:center;gap:6px;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(240,165,0,.1);border:1px solid rgba(240,165,0,.25);padding:3px 10px;border-radius:999px;margin-left:10px;vertical-align:middle}
 @media(max-width:768px){.proj-grid{grid-template-columns:1fr}.proj-card.featured{grid-column:span 1;display:block}.proj-card.featured .card-thumb{height:200px}}
 @media(max-width:600px){.port-hero{padding-left:24px;padding-right:24px}}
 `
 
 const projects = [
-  { id:1, featured:true, cat:'mobile', type:'Featured · Mobile App', emoji:'🛍️', bg:'linear-gradient(135deg,#1a1a17,#0f1a12)', glow:'rgba(126,207,142,.06)', title:'SHOPEASE\nE-COMMERCE', desc:'A full-featured e-commerce mobile app built with Flutter. Clean navigation, smooth animations, and a checkout experience users actually enjoy.', tags:['Flutter','Firebase','Figma','GetX'] },
-  { id:2, cat:'web', type:'Web App', emoji:'📊', bg:'linear-gradient(135deg,#0d1520,#0a0a08)', glow:'rgba(59,130,246,.06)', title:'ANALYTICS\nDASHBOARD', desc:'Real-time analytics dashboard with interactive charts and a clean dark UI.', tags:['React','Next.js','Chart.js'] },
-  { id:3, cat:'mobile', type:'Mobile App', emoji:'💪', bg:'linear-gradient(135deg,#130d1a,#0a0a08)', glow:'rgba(168,85,247,.06)', title:'FITNESS\nTRACKER', desc:'Health & workout tracking app with beautiful progress visualization and habit streaks.', tags:['Flutter','SQLite','FL Chart'] },
-  { id:4, cat:'design', type:'UI/UX Design', emoji:'🎨', bg:'linear-gradient(135deg,#1a1208,#0a0a08)', glow:'rgba(240,165,0,.06)', title:'BRAND &\nDESIGN SYSTEM', desc:'Comprehensive design system with components, tokens, and usage documentation.', tags:['Figma','Design Tokens','Components'] },
-  { id:5, cat:'web', type:'Web · UI/UX', emoji:'🏡', bg:'linear-gradient(135deg,#0d1a18,#0a0a08)', glow:'rgba(6,182,212,.06)', title:'PROPERTY\nLISTING APP', desc:'Modern real estate listing with map integration and advanced filter search.', tags:['Next.js','Mapbox','Figma'] },
-  { id:6, cat:'mobile', type:'Mobile App', emoji:'🍔', bg:'linear-gradient(135deg,#1a0d0d,#0a0a08)', glow:'rgba(239,68,68,.05)', title:'FOOD\nDELIVERY UI', desc:'Food ordering app UI with smooth micro-animations and a seamless ordering flow.', tags:['Flutter','Lottie','BLoC'] },
+  {
+    id: 1,
+    featured: true,
+    cat: 'web',
+    type: 'Featured · Fullstack Web',
+    emoji: '🍽️',
+    bg: 'linear-gradient(135deg,#0d1a10,#0a0a08)',
+    glow: 'rgba(126,207,142,.07)',
+    title: 'CATERING\nFAMILY JAKARTA',
+    desc: 'A complete catering management web application for a Jakarta-based catering business. Features include menu management, order tracking, customer management, and an admin dashboard — built with Laravel backend and Vue.js frontend.',
+    tags: ['Laravel', 'Vue.js', 'REST API', 'MySQL', 'PHP', 'Tailwind CSS'],
+    github: 'https://github.com/RiskyJanuarLbs',
+    live: null,
+    status: null,
+  },
+  {
+    id: 2,
+    featured: false,
+    cat: 'web',
+    type: 'Web App · Game',
+    emoji: '🕵️',
+    bg: 'linear-gradient(135deg,#0d1020,#0a0a08)',
+    glow: 'rgba(99,102,241,.07)',
+    title: 'UNDERCOVER\nPARTY GAME',
+    desc: 'A fun multiplayer party game web app inspired by the classic Undercover card game. Players get secret roles and try to find the undercover agent through discussion. Built with React and TypeScript.',
+    tags: ['React', 'TypeScript', 'JavaScript', 'CSS3'],
+    github: 'https://github.com/RiskyJanuarLbs',
+    live: null,
+    status: null,
+  },
+  {
+    id: 3,
+    featured: false,
+    cat: 'web',
+    type: 'Web · Coming Soon',
+    emoji: '🚧',
+    bg: 'linear-gradient(135deg,#141008,#0a0a08)',
+    glow: 'rgba(240,165,0,.05)',
+    title: 'NEXT\nPROJECT',
+    desc: 'Something new is in the works. Stay tuned for the next project — currently in planning and development phase.',
+    tags: ['TBD'],
+    github: null,
+    live: null,
+    status: 'wip',
+  },
 ]
 
-const filters = ['all','mobile','web','design']
+const filters = ['all', 'web']
 
 export default function Portfolio() {
   const [active, setActive] = useState('all')
@@ -57,65 +97,85 @@ export default function Portfolio() {
     <>
       <style>{css}</style>
       <section className="port-hero">
-        <div style={{ maxWidth:1200, margin:'0 auto', padding:'0 40px' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 40px' }}>
           <div className="section-label reveal">Selected work</div>
-          <h1 className="display-h reveal delay-1" style={{ fontSize:'clamp(4rem,9vw,7.5rem)', marginTop:16 }}>
-            PORTFOLIO<span style={{ color:'var(--accent)' }}>.</span>
+          <h1 className="display-h reveal delay-1" style={{ fontSize: 'clamp(4rem,9vw,7.5rem)', marginTop: 16 }}>
+            PORTFOLIO<span style={{ color: 'var(--accent)' }}>.</span>
           </h1>
-          <p className="reveal delay-2" style={{ color:'var(--text2)', fontSize:'1rem', maxWidth:520, lineHeight:1.8, marginTop:20 }}>
-            A collection of projects spanning mobile apps, web interfaces, and UX design — built with care and attention to detail.
+          <p className="reveal delay-2" style={{ color: 'var(--text2)', fontSize: '1rem', maxWidth: 520, lineHeight: 1.8, marginTop: 20 }}>
+            Projects I've built — spanning fullstack web applications and interactive web experiences. Real work, real code.
           </p>
         </div>
       </section>
 
-      <section style={{ padding:'60px 0 100px' }}>
-        <div style={{ maxWidth:1200, margin:'0 auto', padding:'0 40px' }}>
-          <div style={{ display:'flex', alignItems:'center', gap:8, flexWrap:'wrap', marginBottom:16 }} className="reveal">
+      <section style={{ padding: '60px 0 100px' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 40px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 16 }} className="reveal">
             {filters.map(f => (
-              <button key={f} className={`filter-chip${active===f?' active':''}`} onClick={() => setActive(f)}>
-                {f === 'all' ? 'All' : f === 'design' ? 'UI/UX Design' : f.charAt(0).toUpperCase()+f.slice(1)}
+              <button key={f} className={`filter-chip${active === f ? ' active' : ''}`} onClick={() => setActive(f)}>
+                {f === 'all' ? 'All' : f.charAt(0).toUpperCase() + f.slice(1)}
               </button>
             ))}
           </div>
-          <div style={{ fontFamily:'var(--font-mono)', fontSize:'.72rem', color:'var(--text3)', marginBottom:24 }} className="reveal">
-            Showing {visible.length} project{visible.length!==1?'s':''}
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '.72rem', color: 'var(--text3)', marginBottom: 24 }} className="reveal">
+            Showing {visible.length} project{visible.length !== 1 ? 's' : ''}
           </div>
           <div className="proj-grid">
             {visible.map((p, i) => (
-              <a key={p.id} href="#" className={`proj-card reveal delay-${i%3}${p.featured && active==='all'?' featured':''}`}>
-                <div className="card-thumb" style={{ background:p.bg, ...(p.featured && active==='all' ? { height:'100%', minHeight:280 } : {}) }}>
-                  <div style={{ position:'absolute', inset:0, background:`radial-gradient(ellipse at 40% 50%, ${p.glow} 0%, transparent 70%)` }} />
+              <div
+                key={p.id}
+                className={`proj-card reveal delay-${i % 3}${p.featured && active === 'all' ? ' featured' : ''}`}
+                style={{ cursor: 'default' }}
+              >
+                <div className="card-thumb" style={{ background: p.bg, ...(p.featured && active === 'all' ? { height: '100%', minHeight: 280 } : {}) }}>
+                  <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse at 40% 50%, ${p.glow} 0%, transparent 70%)` }} />
                   <span className="card-thumb-emoji">{p.emoji}</span>
-                  <div className="card-overlay">
-                    <a href="#" className="ol-btn ol-primary">View Project</a>
-                    <a href="#" className="ol-btn ol-ghost">Details</a>
-                  </div>
+                  {(p.github || p.live) && (
+                    <div className="card-overlay">
+                      {p.github && (
+                        <a href={p.github} target="_blank" rel="noopener noreferrer" className="ol-btn ol-primary">GitHub ↗</a>
+                      )}
+                      {p.live && (
+                        <a href={p.live} target="_blank" rel="noopener noreferrer" className="ol-btn ol-ghost">Live Demo</a>
+                      )}
+                    </div>
+                  )}
                 </div>
-                <div className="card-body" style={p.featured && active==='all' ? { display:'flex', flexDirection:'column', justifyContent:'center', padding:'40px 40px' } : {}}>
-                  <div className="card-type">{p.type}</div>
-                  <div className="card-title" style={p.featured && active==='all' ? { fontSize:'2rem' } : {}}>
-                    {p.title.split('\n').map((l,j) => <span key={j}>{l}{j===0&&<br/>}</span>)}
+                <div className="card-body" style={p.featured && active === 'all' ? { display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '40px 40px' } : {}}>
+                  <div className="card-type">
+                    {p.type}
+                    {p.status === 'wip' && <span className="wip-badge">⚡ In Progress</span>}
                   </div>
-                  <p className="card-desc" style={p.featured && active==='all' ? { maxWidth:400 } : {}}>{p.desc}</p>
+                  <div className="card-title" style={p.featured && active === 'all' ? { fontSize: '2rem' } : {}}>
+                    {p.title.split('\n').map((l, j) => <span key={j}>{l}{j === 0 && <br />}</span>)}
+                  </div>
+                  <p className="card-desc" style={p.featured && active === 'all' ? { maxWidth: 400 } : {}}>{p.desc}</p>
                   <div className="card-tags">{p.tags.map(t => <span key={t} className="card-tag">{t}</span>)}</div>
+                  {p.github && (
+                    <div style={{ marginTop: 16 }}>
+                      <a href={p.github} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-mono)', fontSize: '.72rem', color: 'var(--accent)', textDecoration: 'none' }}>
+                        View on GitHub ↗
+                      </a>
+                    </div>
+                  )}
                 </div>
-              </a>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section style={{ padding:'0 0 100px' }}>
-        <div style={{ maxWidth:1200, margin:'0 auto', padding:'0 40px' }}>
-          <div className="reveal" style={{ textAlign:'center', padding:'80px 40px', border:'1px solid var(--border2)', borderRadius:'var(--radius-lg)', background:'var(--bg2)' }}>
-            <div className="section-label" style={{ justifyContent:'center', marginBottom:16 }}>Ready to build?</div>
-            <h2 className="display-h" style={{ fontSize:'clamp(2.5rem,5vw,4rem)' }}>
-              HAVE A PROJECT<span style={{ color:'var(--accent)' }}>?</span>
+      <section style={{ padding: '0 0 100px' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 40px' }}>
+          <div className="reveal" style={{ textAlign: 'center', padding: '80px 40px', border: '1px solid var(--border2)', borderRadius: 'var(--radius-lg)', background: 'var(--bg2)' }}>
+            <div className="section-label" style={{ justifyContent: 'center', marginBottom: 16 }}>Ready to build?</div>
+            <h2 className="display-h" style={{ fontSize: 'clamp(2.5rem,5vw,4rem)' }}>
+              HAVE A PROJECT<span style={{ color: 'var(--accent)' }}>?</span>
             </h2>
-            <p style={{ color:'var(--text2)', marginTop:16, fontSize:'.95rem', maxWidth:400, margin:'16px auto 0', lineHeight:1.7 }}>
+            <p style={{ color: 'var(--text2)', marginTop: 16, fontSize: '.95rem', maxWidth: 400, margin: '16px auto 0', lineHeight: 1.7 }}>
               I'm available for freelance work and full-time opportunities.
             </p>
-            <div style={{ marginTop:32, display:'flex', justifyContent:'center', gap:12, flexWrap:'wrap' }}>
+            <div style={{ marginTop: 32, display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap' }}>
               <Link to="/contact" className="btn-primary">Get In Touch →</Link>
               <Link to="/about" className="btn-outline">About Me</Link>
             </div>
